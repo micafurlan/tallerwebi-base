@@ -5,7 +5,7 @@ public class ServicioContraseniaImpl implements ServicioContrasenia{
     public ServicioContraseniaImpl (RepositorioContrasenia repositorioContrasenia){
         this.repositorioContrasenia = repositorioContrasenia;
     }
-
+    @Override
     public String validarFortaleza(String contrasenia){
         String especiales = "-_%$?!@";
         String resultado = FortalezaContrasenia.DEBIL.name();

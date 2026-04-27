@@ -2,7 +2,14 @@ package com.tallerwebi.dominio;
 
 import com.tallerwebi.dominio.excepcion.NumeroRomanoInvalidoException;
 
-public class ConversorRomanoAEntero {
+public class ServicioRomanoAEnteroImpl implements ServicioRomanoAEntero{
+
+    private RepositorioRomanoAEntero repositorio;
+
+    public ServicioRomanoAEnteroImpl(RepositorioRomanoAEntero repositorio){
+        this.repositorio = repositorio;
+    }
+
 public Integer romanoAEntero(String romano){
     if (verificarCaracteres(romano)== false || verificarQueNoSeRepitaLaMismaLetraTresVeces(romano)== false){
         throw new NumeroRomanoInvalidoException("Combinacion Romana Invalida");
@@ -23,6 +30,7 @@ for (int i = 0; i < romano.length(); i++) {
     }
 
 }
+this.repositorio.guardar(romano, resultado);
 return resultado;
 }
 public Integer pasarUnCharNumeroRomanoAUnNumeroDecimal(char romano){

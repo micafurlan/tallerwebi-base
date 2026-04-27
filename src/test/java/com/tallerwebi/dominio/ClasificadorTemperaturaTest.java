@@ -1,64 +1,79 @@
 package com.tallerwebi.dominio;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import static org.hamcrest.Matchers.is;
 public class ClasificadorTemperaturaTest {
-    ClasificadorTemperatura clasificador;
+
+    RepositorioTemperatura repositorio;
+    ServicioTemperatura servicio;
+
     @BeforeEach
     public void init(){
-        this.clasificador = new ClasificadorTemperatura();
+    this.repositorio = mock(RepositorioTemperatura.class);
+    this.servicio = new ServicioTemperaturaImpl(this.repositorio);
     }
     @Test
     public void cuandoIngresoCeroGradosCellsiusSeClasificaCongelante(){
         Integer temperaturaCongelante = 0;
-        String clasificacionObtenida = clasificador.clasificarTemperatura(temperaturaCongelante);
+        when(repositorio.guardar(anyInt(), anyString())).thenReturn(true);
+        String clasificacionObtenida = servicio.clasificarTemperatura(temperaturaCongelante);
         String clasificacionEsperada = ClasificacionTemperatura.CONGELANTE.name();
-        assertEquals(clasificacionEsperada, clasificacionObtenida);
+        assertThat(clasificacionEsperada,is(clasificacionObtenida));
     }
      @Test
     public void cuandoIngresoUnGradoCellsiusSeClasificaFria(){
         Integer temperaturaFria = 1;
-        String clasificacionObtenida = clasificador.clasificarTemperatura(temperaturaFria);
+        when(repositorio.guardar(anyInt(), anyString())).thenReturn(true);
+        String clasificacionObtenida = servicio.clasificarTemperatura(temperaturaFria);
         String clasificacionEsperada = ClasificacionTemperatura.FRIA.name();
-        assertEquals(clasificacionEsperada, clasificacionObtenida);
+        assertThat(clasificacionEsperada,is(clasificacionObtenida));
     }
      @Test
     public void cuandoIngresoDieciseisGradosCellsiusSeClasificaTEMPLADA(){
         Integer temperaturaTemplada = 16;
-        String clasificacionObtenida = clasificador.clasificarTemperatura(temperaturaTemplada);
+        when(repositorio.guardar(anyInt(), anyString())).thenReturn(true);
+        String clasificacionObtenida = servicio.clasificarTemperatura(temperaturaTemplada);
         String clasificacionEsperada = ClasificacionTemperatura.TEMPLADA.name();
-        assertEquals(clasificacionEsperada, clasificacionObtenida);
+        assertThat(clasificacionEsperada,is(clasificacionObtenida));
     }
      @Test
     public void cuandoIngresoVeintiseisGradosCellsiusSeClasificaCALUROSA(){
         Integer temperaturaCalurosa = 26;
-        String clasificacionObtenida = clasificador.clasificarTemperatura(temperaturaCalurosa);
+        when(repositorio.guardar(anyInt(), anyString())).thenReturn(true);
+        String clasificacionObtenida = servicio.clasificarTemperatura(temperaturaCalurosa);
         String clasificacionEsperada = ClasificacionTemperatura.CALUROSA.name();
-        assertEquals(clasificacionEsperada, clasificacionObtenida);
+        assertThat(clasificacionEsperada,is(clasificacionObtenida));
     }
     @Test
     public void cuandoIngresoVeintiseisGradosCellsiusSeClasificaPELIGROSA(){
         Integer temperaturaPeligrosa = 36;
-        String clasificacionObtenida = clasificador.clasificarTemperatura(temperaturaPeligrosa);
+        when(repositorio.guardar(anyInt(), anyString())).thenReturn(true);
+        String clasificacionObtenida = servicio.clasificarTemperatura(temperaturaPeligrosa);
         String clasificacionEsperada = ClasificacionTemperatura.PELIGROSA.name();
-        assertEquals(clasificacionEsperada, clasificacionObtenida);
+        assertThat(clasificacionEsperada,is(clasificacionObtenida));
     }
     @Test
     public void cuandoIngresoSetentaYOchoComaOchoGradosFahrenheitSeClasificaCALUROSA(){   
         Double temperaturaCalurosa = 78.8;
+        when(repositorio.guardar(anyInt(), anyString())).thenReturn(true);
         String clasificacionEsperada = ClasificacionTemperatura.CALUROSA.name();
-        String clasificacionObtenida = clasificador.clasificarTemperaturaFahrenheit(temperaturaCalurosa);
-        assertEquals(clasificacionEsperada, clasificacionObtenida);
+        String clasificacionObtenida = servicio.clasificarTemperaturaFahrenheit(temperaturaCalurosa);
+        assertThat(clasificacionEsperada,is(clasificacionObtenida));
     }
     @Test
     public void cuandoIngresoMenosUnoYLaLetraEfeSeClasificaCongelante(){
         String temperaturaCongelante = "-1";
-        String clasificacionObtenida = clasificador.clasificarTemperaturaEnString(temperaturaCongelante);
+        when(repositorio.guardar(anyInt(), anyString())).thenReturn(true);
+        String clasificacionObtenida = servicio.clasificarTemperaturaEnString(temperaturaCongelante);
         String clasificacionEsperada = ClasificacionTemperatura.CONGELANTE.name();
-        assertEquals(clasificacionEsperada, clasificacionObtenida);
+        assertThat(clasificacionEsperada,is(clasificacionObtenida));
     }
 
 }
