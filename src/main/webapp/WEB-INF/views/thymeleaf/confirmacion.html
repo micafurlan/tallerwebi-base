@@ -1,14 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmacion</title>
+
+    <!-- W3.CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
-    <h1>Gracias, <span th:text="${contacto.nombre}"></span>!</h1>
-    <p>Recibimos tu mensaje:</p>
-    <p th:text="${contacto.mensaje}"></p>
-    <p>Te responderemos a: <span th:text="${contacto.email}"></span></p>
+
+<body class="w3-light-grey">
+
+    <div class="w3-container w3-padding-32">
+        <div class="w3-card w3-white w3-padding w3-round w3-third w3-margin-auto w3-center">
+
+            <h2 class="w3-text-green">Gracias!</h2>
+
+            <p>
+                Gracias, <strong th:text="${contacto.nombre}"></strong>
+            </p>
+
+            <p>Recibimos tu mensaje:</p>
+
+            <div class="w3-panel w3-light-grey w3-left-align w3-round">
+                <p th:text="${contacto.mensaje}"></p>
+            </div>
+
+            <p>
+                Te responderemos a:
+                <strong th:text="${contacto.email}"></strong>
+            </p>
+
+            <a href="/contacto" class="w3-button w3-blue w3-margin-top w3-round">
+                Volver
+            </a>
+
+        </div>
+    </div>
+
 </body>
 </html>

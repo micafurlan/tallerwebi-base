@@ -18,7 +18,7 @@ public class ContactoControllerTest {
 
   @Test
   public void cuandoEntroAContactoElControladorMeRedirigeALaVistaDeFormularioDeContacto() {
-    ModelAndView modelAndView = controladorContacto.irAContacto();
+    ModelAndView modelAndView = controladorContacto.mostrarFormulario();
     assertThat(modelAndView.getViewName(), equalToIgnoringCase("contacto"));
   }
 
@@ -29,7 +29,7 @@ public class ContactoControllerTest {
     contacto.setNombre("Carlos Menem");
     contacto.setEmail("carlitosmenem@yahoo.com.ar");
     contacto.setMensaje("Hola me llamo Menem");
-    ModelAndView modelAndView = controladorContacto.irAConfirmacion(contacto);
+    ModelAndView modelAndView = controladorContacto.procesarFormulario(contacto);
     assertThat(modelAndView.getViewName(), equalToIgnoringCase("confirmacion"));
   }
 }

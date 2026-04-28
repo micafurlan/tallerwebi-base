@@ -1,24 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto</title>
+
+    <!-- W3.CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
-<div class="formulario">
-    <form ht:action="@{/contacto}" th:object = "${contacto}" method="post">
-    <label>Nombre:</label>
-    <input type="text" th:field="*{nombre}">
-    <br>
-    <label>Email:</label>
-    <input type="email" th:field="*{email}" />
-    <br/>
-<label>Mensaje:</label>
-<textarea th:field="*{mensaje}"></textarea>
-<br/>
-<button type="submit">Enviar</button>
-</form>
-</div>
+
+<body class="w3-light-grey">
+
+    <div class="w3-container w3-padding-32">
+        <div class="w3-card w3-white w3-padding w3-round w3-third w3-margin-auto">
+
+            <h2 class="w3-center">Formulario de Contacto</h2>
+
+            <form th:action="@{/contacto}" th:object="${contacto}" method="post">
+
+                <p>
+                    <label class="w3-text-grey">Nombre</label>
+                    <input class="w3-input w3-border w3-round" type="text" th:field="*{nombre}" required>
+                </p>
+
+                <p>
+                    <label class="w3-text-grey">Email</label>
+                    <input class="w3-input w3-border w3-round" type="email" th:field="*{email}" required>
+                </p>
+
+                <p>
+                    <label class="w3-text-grey">Mensaje</label>
+                    <textarea class="w3-input w3-border w3-round" th:field="*{mensaje}" rows="4" required></textarea>
+                </p>
+
+                <p>
+                    <button class="w3-button w3-blue w3-block w3-round" type="submit">
+                        Enviar
+                    </button>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+
 </body>
+
 </html>
