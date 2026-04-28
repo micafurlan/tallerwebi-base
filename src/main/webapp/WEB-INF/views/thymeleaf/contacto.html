@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+</head>
+<body>
+<div class="formulario">
+    <form ht:action="@{/contacto}" th:object = "${contacto}" method="post">
+    <label>Nombre:</label>
+    <input type="text" th:field="*{nombre}">
+    <br>
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" />
+    <br/>
+<label>Mensaje:</label>
+<textarea th:field="*{mensaje}"></textarea>
+<br/>
+<button type="submit">Enviar</button>
+</form>
+</div>
+</body>
+</html>
